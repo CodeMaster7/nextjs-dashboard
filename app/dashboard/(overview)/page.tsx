@@ -9,6 +9,9 @@ import {
 	CardsSkeleton
 } from '@/app/ui/skeletons'
 
+// Force dynamic rendering to avoid database calls during build
+// export const dynamic = 'force-dynamic'
+
 export default async function Page() {
 	return (
 		<main>

@@ -1,7 +1,10 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+	// Disable PPR to fix Vercel deployment database connection issues
+	experimental: {
+		ppr: 'incremental'
+	}
+}
 
-export default nextConfig;
+export default nextConfig

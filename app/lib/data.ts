@@ -9,7 +9,12 @@ import {
 } from './definitions'
 import { formatCurrency } from './utils'
 
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' })
+// Validate environment variable exists
+if (!process.env.POSTGRES_URL) {
+	throw new Error('POSTGRES_URL environment variable is not set')
+}
+
+const sql = postgres(process.env.POSTGRES_URL, { ssl: 'require' })
 
 export async function fetchRevenue() {
 	try {
@@ -21,7 +26,7 @@ export async function fetchRevenue() {
 
 		const data = await sql<Revenue[]>`SELECT * FROM revenue`
 
-		console.log('Data fetch completed after 3 seconds.');
+		console.log('Data fetch completed after 3 seconds.')
 
 		return data
 	} catch (error) {
